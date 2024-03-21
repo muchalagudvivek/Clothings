@@ -22,6 +22,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import org.springframework.security.core.*;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 @Entity
 @NoArgsConstructor
 @Data
@@ -49,39 +50,39 @@ public class User implements UserDetails {
 
 
 
-    @Override
+    //@Override
     public Collection<?extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = role.stream().map(role -> new SimpleGrantedAuthority("ROLE_"+role.getRole()))
+        List<GrantedAuthority> authorities = role.stream().map(role -> new SimpleGrantedAuthority("ROLE_"+role.getRoleName()))
                 .collect(Collectors.toList());
         return authorities;
     }
 
-    @Override
+    //@Override
     public String getPassword() {
         return Password;
     }
 
-    @Override
+    //@Override
     public String getUsername() {
         return email;
     }
 
-    @Override
+    //@Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    @Override
+    //@Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    @Override
+    //@Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    @Override
+    //@Override
     public boolean isEnabled() {
         return true;
     }
