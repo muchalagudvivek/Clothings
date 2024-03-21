@@ -1,4 +1,4 @@
-package Payload;
+package com.clothing.Payload;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
