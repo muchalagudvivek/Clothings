@@ -21,6 +21,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import org.springframework.security.core.*;
 @Entity
 @NoArgsConstructor
 @Data
@@ -49,9 +50,8 @@ public class User implements UserDetails {
 
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = role.stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_"+role.getRole()))
+    public Collection<?extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = role.stream().map(role -> new SimpleGrantedAuthority("ROLE_"+role.getRole()))
                 .collect(Collectors.toList());
         return authorities;
     }
