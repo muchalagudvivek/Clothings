@@ -10,9 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import static com.clothing.entities.TotalRoles.ADMIN;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
@@ -24,20 +22,17 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
-         http.csrf().disable()
-                 .authorizeHttpRequests()
-
-                 .requestMatchers("/**")
-                 .permitAll()
+        http.csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(requests -> requests
+                        .requestMatchers("/**")
+                        .permitAll()
 //                .requestMatchers("/product/**").hasRole(ADMIN.name())
 //                 .requestMatchers("/cart/**").hasRole(ADMIN.name())
-                .anyRequest()
-                .authenticated()
-                 .and()
-                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                 .and()
-                 .authenticationProvider(authenticationProvider)
-                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                        .anyRequest()
+                        .authenticated())
+                .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
 
         return http.build();

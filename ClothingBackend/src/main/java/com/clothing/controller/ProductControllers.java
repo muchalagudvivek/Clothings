@@ -1,4 +1,4 @@
-package Controller;
+package com.clothing.controller;
 
 import java.util.List;
 
@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-import Payload.ApiResponse;
-import Payload.ProductDto;
+import com.clothing.Payload.ApiResponse;
+import com.clothing.Payload.ProductDto;
+import com.clothing.services.ProductService;
+
+import io.jsonwebtoken.io.IOException;
 
 @RestController
 @CrossOrigin
@@ -28,7 +32,7 @@ public class ProductControllers {
     private ProductService productService;
     
     @PostMapping(value = "/add" )
-    public ResponseEntity<ProductDto> CreateProduct(@RequestParam MultiValueMap<String, String> formData, @RequestParam("img") MultipartFile file) throws IOException {
+    public ResponseEntity<ProductDto> CreateProduct(@RequestParam MultiValueMap<String, String> formData, @RequestParam("img") MultipartFile file) throws IOException, java.io.IOException {
         ProductDto productDto = new ProductDto();
         productDto.setProductName(formData.getFirst("productname"));
         productDto.setDescription(formData.getFirst("description"));
@@ -70,7 +74,7 @@ public class ProductControllers {
 
     
     @PutMapping("/{ProductId}")
-    public ResponseEntity<ProductDto> UpdateProduct(@RequestParam MultiValueMap<String, String> formData, @RequestParam("img") MultipartFile file,@PathVariable Integer ProductId) throws IOException {
+    public ResponseEntity<ProductDto> UpdateProduct(@RequestParam MultiValueMap<String, String> formData, @RequestParam("img") MultipartFile file,@PathVariable Integer ProductId) throws IOException, java.io.IOException {
         ProductDto productDto = new ProductDto();
         productDto.setProductName(formData.getFirst("productname"));
         productDto.setDescription(formData.getFirst("description"));
