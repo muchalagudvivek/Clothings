@@ -1,6 +1,7 @@
 package com.clothing.config;
 
-import org.apache.catalina.User;
+import com.clothing.repo.UserRepo;
+import com.mysql.cj.protocol.AuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,9 +11,6 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import com.clothing.repo.UserRepo;
-import com.mysql.cj.protocol.AuthenticationProvider;
 
 @Configuration
 public class ApplicationConfig {
