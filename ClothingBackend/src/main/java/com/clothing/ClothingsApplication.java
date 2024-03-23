@@ -27,7 +27,7 @@ public class ClothingsApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://http://mysql-clothing-store-clothing-store-db.a.aivencloud.com:21512");
+				registry.addMapping("/**").allowedOrigins("mysql-clothing-store-clothing-store-db.a.aivencloud.com:21512");
 			}
 		};
 	}

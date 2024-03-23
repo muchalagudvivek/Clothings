@@ -1,6 +1,6 @@
 package com.clothing.repo;
 
-import org.apache.catalina.User;
+import com.clothing.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepo extends JpaRepository<User, Integer> {

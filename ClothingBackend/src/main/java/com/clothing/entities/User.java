@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.management.relation.Role;
+//import javax.management.relation.Role;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -23,6 +23,8 @@ import lombok.ToString;
 
 import org.springframework.security.core.*;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
 @NoArgsConstructor
 @Data
@@ -50,39 +52,39 @@ public class User implements UserDetails {
 
 
 
-    //@Override
+    @Override
     public Collection<?extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = role.stream().map(role -> new SimpleGrantedAuthority("ROLE_"+role.getRoleName()))
+        List<GrantedAuthority> authorities = role.stream().map(role -> new SimpleGrantedAuthority("ROLE_"+role.getRole()))
                 .collect(Collectors.toList());
         return authorities;
     }
 
-    //@Override
+    @Override
     public String getPassword() {
         return Password;
     }
 
-    //@Override
+    @Override
     public String getUsername() {
         return email;
     }
 
-    //@Override
+    @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    //@Override
+    @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    //@Override
+    @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    //@Override
+    @Override
     public boolean isEnabled() {
         return true;
     }

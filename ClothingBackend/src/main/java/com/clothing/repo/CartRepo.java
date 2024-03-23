@@ -1,7 +1,7 @@
 package com.clothing.repo;
 
-import org.apache.catalina.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import com.clothing.entities.User;
 
 import com.clothing.entities.Cart;
 

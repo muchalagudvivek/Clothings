@@ -9,6 +9,9 @@ import java.util.function.Function;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import com.clothing.entities.User;
+
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import io.jsonwebtoken.Claims;
@@ -35,15 +38,15 @@ public class JwtService {
 
 
 
-    public String generateToken(UserDetails userDetails){
-        return generateToken(new HashMap<>(),userDetails);
+    public String generateToken(User user){
+        return generateToken(new HashMap<>(),user);
 
     }
 
 
-    public boolean isTokenValid(String token,UserDetailsService userDetails){
+    public boolean isTokenValid(String token,UserDetails userDetails){
         final String username= extractUsername(token);
-        return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
+        return (username.equals(((UserDetails) userDetails).getUsername())) && !isTokenExpired(token);
     }
 
     private boolean isTokenExpired(String token) {
