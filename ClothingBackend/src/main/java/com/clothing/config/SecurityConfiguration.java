@@ -13,11 +13,13 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
+
 import static com.clothing.entities.TotalRoles.ADMIN;
 
 @Configuration
 @EnableWebSecurity
-//@ComponentScan(basePackages = "com.clothing.config")
+//@Component
 public class SecurityConfiguration {
 
     @Autowired
@@ -43,5 +45,5 @@ public class SecurityConfiguration {
 
         return http.build();
     }
- 
+
 }

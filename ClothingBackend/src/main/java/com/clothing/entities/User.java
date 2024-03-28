@@ -47,7 +47,7 @@ public class User implements UserDetails {
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Role> role;
 
-    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "userdetail",cascade = CascadeType.ALL)
     private Cart cart;
 
 

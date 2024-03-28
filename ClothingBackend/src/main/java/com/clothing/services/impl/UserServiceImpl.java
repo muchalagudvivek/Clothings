@@ -14,6 +14,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -60,7 +61,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public SingIn SingIn(SingIn singIn) {
         this.authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(singIn.getEmail(),singIn.getPassword()));
-        User user=this.userRepo.findByEmail(singIn.getEmail());
+        User user= (User) this.userRepo.findByEmail(singIn.getEmail());
         var jwtToken=jwtService.generateToken(user);
         singIn.setJwt(jwtToken);
         return singIn;

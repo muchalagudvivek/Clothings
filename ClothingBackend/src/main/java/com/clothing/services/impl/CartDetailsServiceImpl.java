@@ -7,7 +7,10 @@ import com.clothing.repo.CartRepo;
 import com.clothing.repo.UserRepo;
 import com.clothing.services.CartDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CartDetailsServiceImpl implements CartDetailsService{
 
     @Autowired

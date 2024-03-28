@@ -9,7 +9,6 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-@ComponentScan("com.example")
 public class ClothingsApplication {
 
 	public static void main(String[] args) {
@@ -29,7 +28,7 @@ public class ClothingsApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("mysql-clothing-store-clothing-store-db.a.aivencloud.com:21512");
+				registry.addMapping("/**").allowedOrigins("http://localhost:3306");
 			}
 		};
 	}
